@@ -84,4 +84,7 @@
     <string name="ask_the_rabbi_button_text">Ask the rabbi</string>
     <string name="internet_connection_error_message">Internet service is unavailable. Please check your Internet connection and try again.</string>
     <string name="query_error_message">Error getting data from the website</string>
+    <string name="no_web_browser_error_message">You need to install a web browser for this feature to work</string>
+    <string name="loading_message">Loading</string>
+    <string name="become_a_member_button_text">Become a member</string>
 </resources>

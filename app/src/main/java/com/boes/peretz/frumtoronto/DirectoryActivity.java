@@ -1,6 +1,7 @@
 package com.boes.peretz.frumtoronto;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class DirectoryActivity extends AppCompatActivity {
 
@@ -19,14 +21,6 @@ public class DirectoryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -47,9 +41,13 @@ public class DirectoryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showRegisterYourBusinessActivity(View view){
-        Intent intent=new Intent(DirectoryActivity.this,RegisterYourBusinessActivity.class);
-        startActivity(intent);
+    public void showRegisterYourBusinessWebpage(View view){
+        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.frumtoronto.com/BusinessApplicationForm.asp?Task=NewBusiness"));
+        if (intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }else {
+            Toast.makeText(getApplicationContext(),R.string.no_web_browser_error_message,Toast.LENGTH_LONG).show();
+        }
     }
 
     public void showDirectoryRatesActivity(View view){
@@ -133,3 +131,4 @@ public class DirectoryActivity extends AppCompatActivity {
     }
 
 }
+

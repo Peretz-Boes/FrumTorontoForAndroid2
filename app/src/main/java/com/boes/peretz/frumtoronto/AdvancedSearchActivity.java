@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -34,20 +35,14 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         webView=(WebView)findViewById(R.id.advanced_search_web_view);
+        webView.setWebViewClient(new WebViewClient());
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         if (isInternetServiceAvailable()) {
             ParseAdvancedSearchWebPage parseAdvancedSearchWebPage = new ParseAdvancedSearchWebPage();
+            Toast.makeText(getApplicationContext(), R.string.loading_message,Toast.LENGTH_LONG).show();
             parseAdvancedSearchWebPage.execute();
         }else {
             Toast.makeText(getApplicationContext(), R.string.internet_connection_error_message, Toast.LENGTH_LONG).show();
@@ -82,6 +77,9 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             webView.loadData(result,"text/html",null);
+            if (result.equals("")){
+                Toast.makeText(getApplicationContext(),R.string.query_error_message,Toast.LENGTH_LONG).show();
+            }
         }
     }
 

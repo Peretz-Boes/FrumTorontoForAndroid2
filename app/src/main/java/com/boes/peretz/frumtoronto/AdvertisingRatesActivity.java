@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,20 +35,14 @@ public class AdvertisingRatesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         webView=(WebView)findViewById(R.id.advertising_rates_web_view);
+        webView.setWebViewClient(new WebViewClient());
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         if (isInternetServiceAvailable()) {
             ParseAdvertisingRatesWebPage parseAdvertisingRatesWebPage = new ParseAdvertisingRatesWebPage();
+            Toast.makeText(getApplicationContext(), R.string.loading_message,Toast.LENGTH_LONG).show();
             parseAdvertisingRatesWebPage.execute();
         }
     }
@@ -79,6 +75,9 @@ public class AdvertisingRatesActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             webView.loadData(result,"text/html",null);
+            if (result.equals("")){
+                Toast.makeText(getApplicationContext(),R.string.query_error_message,Toast.LENGTH_LONG).show();
+            }
         }
     }
 

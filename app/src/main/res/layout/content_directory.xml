@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     android:id="@+id/content_directory"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shul"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -14,15 +15,21 @@
     tools:context="com.boes.peretz.frumtoronto.DirectoryActivity"
     tools:showIn="@layout/activity_directory">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
     <Button
         android:id="@+id/button14"
         android:text="@string/home_and_garden_button_text"
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button13"
-        android:layout_alignRight="@+id/button12"
-        android:layout_alignEnd="@+id/button12"
         android:onClick="showHomeAndGardenActivity"/>
 
     <Button
@@ -31,22 +38,25 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/button13"
-        android:layout_alignStart="@+id/button13"
         android:onClick="showAdvancedSearchActivity"/>
 
     <Button
         android:id="@+id/button17"
         android:text="@string/business_services_button_text"
         android:textAllCaps="false"
-        android:layout_width="105dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button15"
-        android:layout_alignRight="@+id/button15"
-        android:layout_alignEnd="@+id/button15"
         android:layout_marginTop="17dp"
         android:onClick="showBusinessServicesActivity"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
 
     <Button
         android:id="@+id/button21"
@@ -54,9 +64,6 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button19"
-        android:layout_alignLeft="@+id/button19"
-        android:layout_alignStart="@+id/button19"
         android:layout_marginTop="14dp"
         android:onClick="showFinancialServicesActivity"/>
 
@@ -66,21 +73,22 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button11"
-        android:layout_alignLeft="@+id/button23"
-        android:layout_alignStart="@+id/button23"
         android:onClick="showSimchasActivity"/>
 
     <Button
         android:id="@+id/button25"
         android:text="@string/sport_and_leisure_button_text"
         android:textAllCaps="false"
-        android:layout_width="105dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button14"
-        android:layout_alignRight="@+id/button24"
-        android:layout_alignEnd="@+id/button24"
         android:onClick="showSportAndLeisureActivity"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
     <Button
         android:id="@+id/button26"
@@ -88,9 +96,6 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button16"
-        android:layout_alignLeft="@+id/button25"
-        android:layout_alignStart="@+id/button25"
         android:onClick="showTransportAndAutoActivity"/>
 
     <Button
@@ -99,55 +104,55 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button10"
-        android:layout_alignBottom="@+id/button10"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:onClick="showShoppingActivity"/>
 
     <Button
         android:id="@+id/button8"
         android:text="@string/business_directory_button_text"
         android:textAllCaps="false"
-        android:layout_width="105dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:onClick="showBusinessDirectory"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
     <Button
         android:id="@+id/button19"
         android:text="@string/clothing_and_accessories_button_text"
         android:textAllCaps="false"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:layout_below="@+id/button17"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:onClick="showClothingAndAccessoriesActivity"/>
 
     <Button
         android:id="@+id/button20"
         android:text="@string/property_and_accommodations_button_text"
         android:textAllCaps="false"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button19"
-        android:layout_alignBottom="@+id/button19"
-        android:layout_toRightOf="@+id/button19"
-        android:layout_toEndOf="@+id/button19"
         android:onClick="showPropertyAndAccommodationsActivity"/>
 
     <Button
         android:id="@+id/button10"
         android:text="@string/government_and_institutions_button_text"
         android:textAllCaps="false"
-        android:layout_width="105dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button8"
-        android:layout_toRightOf="@+id/button8"
-        android:layout_toEndOf="@+id/button8"
         android:onClick="showGovernmentAndInstitutionsActivity"/>
+
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <Button
         android:id="@+id/button11"
@@ -155,10 +160,7 @@
         android:textAllCaps="false"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="showRegisterYourBusinessActivity"/>
+        android:onClick="showRegisterYourBusinessWebpage"/>
 
     <Button
         android:id="@+id/button13"
@@ -166,54 +168,48 @@
         android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button15"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:onClick="showDirectoryRatesActivity"/>
 
     <Button
         android:id="@+id/button12"
         android:text="@string/heath_and_beauty_button_text"
         android:textAllCaps="false"
-        android:layout_width="105dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button11"
-        android:layout_toRightOf="@+id/button15"
-        android:layout_toEndOf="@+id/button15"
         android:onClick="showHeathAndBeautyActivity"/>
 
-    <Button
-        android:id="@+id/button16"
-        android:text="@string/jewish_community_services_button_text"
-        android:textAllCaps="false"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button15"
-        android:layout_alignBottom="@+id/button15"
-        android:layout_alignRight="@+id/button14"
-        android:layout_alignEnd="@+id/button14"
-        android:onClick="showJewishCommunityServicesActivity"/>
+</LinearLayout>
 
-    <Button
-        android:id="@+id/button18"
-        android:text="@string/kosher_foods_activity"
-        android:textAllCaps="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button16"
-        android:layout_alignRight="@+id/button16"
-        android:layout_alignEnd="@+id/button16"
-        android:onClick="showKosherFoodsActivity"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button22"
-        android:text="@string/services_button_text"
-        android:textAllCaps="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button21"
-        android:layout_alignBottom="@+id/button21"
-        android:layout_toLeftOf="@+id/button26"
-        android:layout_toStartOf="@+id/button26"
-        android:onClick="showServicesActivity"/>
-</RelativeLayout>
+            <Button
+                android:id="@+id/button16"
+                android:text="@string/jewish_community_services_button_text"
+                android:textAllCaps="false"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:onClick="showJewishCommunityServicesActivity"/>
+
+            <Button
+                android:id="@+id/button18"
+                android:text="@string/kosher_foods_activity"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showKosherFoodsActivity"/>
+
+            <Button
+                android:id="@+id/button22"
+                android:text="@string/services_button_text"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showServicesActivity"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

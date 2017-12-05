@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -33,22 +36,17 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
         webView=(WebView)findViewById(R.id.about_us_webview);
+        webView.setWebViewClient(new WebViewClient());
         if (isInternetServiceAvailable()) {
             ParseAboutUsWebPage parseAboutUsWebPage = new ParseAboutUsWebPage();
+            Toast.makeText(getApplicationContext(), R.string.loading_message,Toast.LENGTH_LONG).show();
             parseAboutUsWebPage.execute();
+
         }else {
             Toast.makeText(getApplicationContext(), R.string.internet_connection_error_message, Toast.LENGTH_LONG).show();
         }
@@ -73,7 +71,6 @@ public class AboutUsActivity extends AppCompatActivity {
                 Log.d(LOG_TAG,document.toString());
                 result=document.toString();
             }catch (IOException exception){
-                Toast.makeText(getApplicationContext(),R.string.query_error_message,Toast.LENGTH_LONG).show();
                 exception.printStackTrace();
             }
             return "Executed";
@@ -83,6 +80,9 @@ public class AboutUsActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             webView.loadData(result,"text/html",null);
+            if (result.equals("")){
+                Toast.makeText(getApplicationContext(),R.string.query_error_message,Toast.LENGTH_LONG).show();
+            }
         }
     }
 

@@ -23,15 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void showTorontoWeather(View view) {
@@ -39,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
-            Toast.makeText(getApplicationContext(), "You need to install a web browser for this feature to work", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.no_web_browser_error_message, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -48,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
         }else {
-            Toast.makeText(getApplicationContext(),"You need to install a web browser for this feature to work",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),R.string.no_web_browser_error_message,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -80,6 +71,24 @@ public class MainActivity extends AppCompatActivity {
     public void showShulsAndTefillosActivity(View view){
         Intent intent=new Intent(MainActivity.this,ShulsAndTefillosActivity.class);
         startActivity(intent);
+    }
+
+    public void showAskTheRabbiWebpage(View view){
+        Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.frumtoronto.com/Blogger.asp?BlogCategoryID=98"));
+        if (intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }else {
+            Toast.makeText(getApplicationContext(), R.string.no_web_browser_error_message,Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void showBecomeAMemberWebpage(View view){
+        Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.frumtoronto.com/MemberApplicationForm.asp?Task=NewMember"));
+        if (intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }else {
+            Toast.makeText(getApplicationContext(),R.string.no_web_browser_error_message,Toast.LENGTH_LONG).show();
+        }
     }
 
 }

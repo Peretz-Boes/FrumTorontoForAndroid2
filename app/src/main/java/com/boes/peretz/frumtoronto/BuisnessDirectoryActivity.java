@@ -15,6 +15,7 @@ import android.util.TimeFormatException;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -34,20 +35,14 @@ public class BuisnessDirectoryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         webView=(WebView)findViewById(R.id.buisness_directory_web_view);
+        webView.setWebViewClient(new WebViewClient());
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         if (isInternetServiceAvailable()) {
             ParseBusinessDirectoryWebPage parseBusinessDirectoryWebPage = new ParseBusinessDirectoryWebPage();
+            Toast.makeText(getApplicationContext(), R.string.loading_message,Toast.LENGTH_LONG).show();
             parseBusinessDirectoryWebPage.execute();
         }else {
             Toast.makeText(getApplicationContext(), R.string.internet_connection_error_message, Toast.LENGTH_LONG).show();
@@ -73,7 +68,6 @@ public class BuisnessDirectoryActivity extends AppCompatActivity {
                 Log.d(LOG_TAG,document.toString());
                 result=document.toString();
             }catch (IOException exception){
-                Toast.makeText(getApplicationContext(), R.string.query_error_message,Toast.LENGTH_LONG).show();
                 exception.printStackTrace();
             }
             return "Executed";
@@ -83,6 +77,9 @@ public class BuisnessDirectoryActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             webView.loadData(result,"text/html",null);
+            if (result.equals("")){
+                Toast.makeText(getApplicationContext(),R.string.query_error_message,Toast.LENGTH_LONG).show();
+            }
         }
     }
 
